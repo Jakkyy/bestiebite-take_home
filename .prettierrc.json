@@ -1,0 +1,10 @@
+{
+  "tabWidth": 4,
+  "useTabs": true,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "singleQuote": false,
+  "bracketSameLine": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "endOfLine": "crlf"
+}
