@@ -6,7 +6,9 @@ export async function fetchCities(
 	signal?: AbortSignal,
 ): Promise<CitySuggestion[]> {
 	const response = await fetch(
-		`https://api.bestiebite.com/places/v2/autocomplete?term=${term}&lang=it&limit=4`,
+		`https://api.bestiebite.com/places/v2/autocomplete?term=${encodeURIComponent(
+			term,
+		)}&lang=it&limit=4`,
 		{ signal },
 	);
 
