@@ -64,32 +64,28 @@ export function CitySearch({
 		inputRef.current?.focus();
 	};
 
-	function renderSuggestions() {
+	function renderSuggestionsContent() {
 		if (isLoading) return <LoadingSuggestions />;
 		if (isError) return <ErrorState onRetry={() => void refetch()} />;
 		if (isEmpty) return <EmptyResults />;
 
-		return (
-			<CommandList aria-label="Suggerimenti città">
-				{suggestions.map((item) => (
-					<CommandItem
-						key={item.id}
-						value={String(item.id)}
-						onSelect={() => handleSelectCity(item)}
-						className="group data-[selected=true]:bg-primary/10 flex cursor-pointer items-center justify-between border-b border-[#1a1a1a] px-4 py-3 text-left transition-colors last:border-b-0">
-						<div className="flex flex-col gap-0.5">
-							<p className="text-foreground text-sm font-semibold">
-								{item.name}
-							</p>
-							<p className="text-muted text-xs">
-								{item.structured_formatting.secondary_text}
-							</p>
-						</div>
-						<ChevronRight className="text-muted size-5 shrink-0 opacity-0 transition-opacity duration-300 group-data-[selected=true]:opacity-100" />
-					</CommandItem>
-				))}
-			</CommandList>
-		);
+		return suggestions.map((item) => (
+			<CommandItem
+				key={item.id}
+				value={String(item.id)}
+				onSelect={() => handleSelectCity(item)}
+				className="group data-[selected=true]:bg-primary/10 flex cursor-pointer items-center justify-between border-b border-[#1a1a1a] px-4 py-3 text-left transition-colors last:border-b-0">
+				<div className="flex flex-col gap-0.5">
+					<p className="text-foreground text-sm font-semibold">
+						{item.name}
+					</p>
+					<p className="text-muted text-xs">
+						{item.structured_formatting.secondary_text}
+					</p>
+				</div>
+				<ChevronRight className="text-muted size-5 shrink-0 opacity-0 transition-opacity duration-300 group-data-[selected=true]:opacity-100" />
+			</CommandItem>
+		));
 	}
 
 	useEffect(() => {
@@ -144,13 +140,14 @@ export function CitySearch({
 					)}
 				</InputGroup>
 
-				{showSuggestions && (
-					<div
-						role="presentation"
-						className="border-border bg-surface absolute top-16 left-0 w-full overflow-hidden rounded-2xl border shadow-md">
-						{renderSuggestions()}
-					</div>
-				)}
+				<div
+					role="presentation"
+					hidden={!showSuggestions}
+					className="border-border bg-surface absolute top-16 left-0 w-full overflow-hidden rounded-2xl border shadow-md">
+					<CommandList aria-label="Suggerimenti città">
+						{renderSuggestionsContent()}
+					</CommandList>
+				</div>
 			</Command>
 		</div>
 	);
