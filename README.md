@@ -60,6 +60,8 @@ lib/
   api.ts            # fetch verso le API pubbliche BestieBite
   schemas.ts        # schemi Zod + tipi inferiti
   query-keys.ts     # chiavi di cache TanStack Query
+  utils.ts          # utility condivise (es. cn per le classi)
+tests/
   schemas.test.ts   # test di validazione degli schemi
   api.test.ts       # test delle funzioni di fetch (fetch mockato)
 ```
@@ -108,8 +110,8 @@ pnpm test
 
 Coprono:
 
-- **`lib/schemas.test.ts`** — accettazione/rifiuto degli schemi Zod: campi opzionali, vincoli numerici (`.int()`), passthrough delle chiavi extra, campi obbligatori mancanti, unicode.
-- **`lib/api.test.ts`** — funzioni di fetch con `fetch` mockato: parsing in caso di successo, encoding del termine, inoltro dell'`AbortSignal`, gestione errori HTTP e payload non validi.
+- **`tests/schemas.test.ts`** — accettazione/rifiuto degli schemi Zod: campi opzionali, vincoli numerici (`.int()`), passthrough delle chiavi extra, campi obbligatori mancanti, unicode.
+- **`tests/api.test.ts`** — funzioni di fetch con `fetch` mockato: parsing in caso di successo, encoding del termine, inoltro dell'`AbortSignal`, gestione errori HTTP e payload non validi.
 
 ## Configurazione immagini
 
