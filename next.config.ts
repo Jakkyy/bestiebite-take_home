@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-	/* config options here */
-};
-
-export default nextConfig;
+export default function nextConfig(): NextConfig {
+	return {
+		images: {
+			remotePatterns: [
+				{
+					protocol: "https",
+					hostname: "firebasestorage.googleapis.com",
+				},
+				{
+					protocol: "https",
+					hostname: "storage.googleapis.com",
+				},
+			],
+		},
+	};
+}
